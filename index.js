@@ -33,6 +33,20 @@ app.post("/explain", async (req, res) => {
    }
 });
 
+app.get("/history", async (req, res) => {
+  try {
+    const snapshot = await db.collection("sessions").orderBy("createdAt", "asc").get();
+    const history = {};
+    snapshot.forEach(doc => {
+      history[doc.id] = doc.data();
+    });
+    res.json(history);
+  } catch (err) {
+    console.error("History Error:", err);
+    res.status(500).json({ error: "Failed to fetch history" });
+  }
+});
+
 app.listen(3000, () => {
   console.log("CodeBuddy Backend running on http://localhost:3000");
 });
