@@ -37,20 +37,12 @@ function toggleVoice() {
   voicePopup.style.display = isRecordingUI ? "flex" : "none";
 }
 
-//sending to server
-async function saveCodeToFirebase(code) {
-  await fetch("http://localhost:3000/save", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ code })
-  });
-}
 
 // ---- Load code history from Firebase (accessing backend) ----
 async function loadCodeHistory() {
   const res = await fetch("http://localhost:3000/history");
   const data = await res.json();
-  
+
   historyList.innerHTML = "";
   if (!data) return;
 
@@ -58,14 +50,16 @@ async function loadCodeHistory() {
   entries.sort((a, b) => a[1].createdAt - b[1].createdAt);
 
   entries.forEach(([key, snippet], index) => {
-    const li = document.createElement("li");
-    li.textContent = snippet.code.length > 50 ? snippet.code.slice(0, 50) + "...": snippet.code;
-    li.style.cursor = "pointer";
-    li.addEventListener("click", () => {
-      codeArea.value = snippet.code;
-      outputBox.innerText = `Loaded snippet #${index + 1}`;
-    });
+    if (snippet && snippet.code) {
+      const li = document.createElement("li");
+      li.textContent = snippet.code.length > 50 ? snippet.code.slice(0, 50) + "..." : snippet.code;
+      li.style.cursor = "pointer";
+      li.addEventListener("click", () => {
+        codeArea.value = snippet.code;
+        outputBox.innerText = `Loaded snippet #${index + 1}`;
+      });
     historyList.appendChild(li);
+    }
   });
 }
 
@@ -82,7 +76,6 @@ async function explainCode() {
   alert("Code sent for explanation!");
 
   try {
-    await saveCodeToFirebase(code);
 
     // Code to backend for Gemini explanation
     const res = await fetch("http://localhost:3000/explain", {
