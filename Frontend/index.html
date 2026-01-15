@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CodeBuddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🕘 Chat History</h2>
+    <button id="new-chat-btn">+ New Chat</button>
+    <p>Your recent coding adventures will appear here...</p><br>
+    <div id="output"></div>
+    <div id="history">
+      <h3 id="history-title">Code History</h3>
+      <ul id="historyList"></ul>
+    </div>
+
+    <div class="sidebar-footer">
+      CodeBuddy v1.0 · Powered by Gemini
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="top-bar">
+      <div class="logo">💻 CodeBuddy</div>
+
+      <!-- Live Voice -->
+      <div class="voice-container">
+        <button class="voice-btn" onclick="toggleVoice()">🎙 Live Voice</button>
+        <div id="voicePopup" class="voice-popup">
+          <span class="record-dot"></span>
+          Speak now
+        </div>
+      </div>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor-card">
+      <div class="editor-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <div class="file-name">freshman_mode.js</div>
+      </div>
+
+      <textarea id="codeArea" placeholder="Paste your scary code snippet here..."></textarea>
+
+      <div class="editor-footer">
+        <button class="upload-btn" onclick="uploadCode()">Upload your code</button>
+        <button class="explain-btn" onclick="explainCode()">🪄 Explain Like I'm a Freshman</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden file input -->
+  <input type="file" id="fileInput" hidden />
+
+  <!-- External JS -->
+ <script type="module" src="script.js"></script>
+</script>
+</body>
+</html>
