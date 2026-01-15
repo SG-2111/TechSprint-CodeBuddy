@@ -9,12 +9,10 @@
     For full functionality—especially features relying on external services such as Firebase—local execution is recommended.
 
 
-❓Problem Statement
-While learning programming, beginners often struggle to understand technical jargon and cryptic compiler or runtime errors. Many existing platforms assume prior knowledge, which leads to confusion, excessive debugging time, and eventually discouragement from learning programming altogether.
+❓Problem Statement -  While learning programming, beginners often struggle to understand technical jargon and cryptic compiler or runtime errors. Many existing platforms assume prior knowledge, which leads to confusion, excessive debugging time, and eventually discouragement from learning programming altogether.
 
 
-✅ Solution
-CodeBuddy aims to reduce this learning barrier by providing simplified explanations and guidance tailored for beginners. Instead of overwhelming users with complex terminology, the application focuses on clarity and approachability, helping learners understand *why* an error occurs and *how* to resolve it.
+✅ Solution -  CodeBuddy aims to reduce this learning barrier by providing simplified explanations and guidance tailored for beginners. Instead of overwhelming users with complex terminology, the application focuses on clarity and approachability, helping learners understand *why* an error occurs and *how* to resolve it.
 
 
 ✨ Key Features
