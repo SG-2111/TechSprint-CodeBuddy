@@ -1,5 +1,5 @@
 require('dotenv').config({ path: './code.env' });
-
+const projectId = process.env.FIREBASE_PROJECT_ID;
 
 
 const express = require("express");
@@ -28,15 +28,17 @@ app.post("/explain", async (req, res) => {
     });
     res.json({ explanation });
   } catch (err) {
-    console.log("Firebase Error: ", err);
-    res.status(500).json({error: "Error in saving it in firestore"});
+    console.error("FIREBASE CRASH:", err); 
+    res.status(500).json({ error: err.message });
+    /*console.log("Firebase Error: ", err);
+    res.status(500).json({error: "Error in saving it in firestore"});*/
    }
 });
 
 app.get("/history", async (req, res) => {
   try {
     const snapshot = await db.collection("sessions").orderBy("createdAt", "asc").get();
-    const history = {};
+    let history = {};
     snapshot.forEach(doc => {
       history[doc.id] = doc.data();
     });
